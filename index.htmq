@@ -36,7 +36,7 @@ html {
            let sc = document.getElementById('screen_center');
            sc.style.top = Math.round(screen_height/2)+'px';
            let info = document.getElementById('info');
-           info.innerHTML = ''+window_width+'x'+window_height+'@'+browser_left+'x'+browser_top;
+           info.innerHTML = ''+window_width+'x'+window_height+'@'+browser_left+'x'+browser_top+' isMobile='+isMobile()+' ';
            '''
         button(id=fullscreen onclick='toggleFullScreen();') = FULL
 

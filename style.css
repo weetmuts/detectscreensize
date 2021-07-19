@@ -63,6 +63,7 @@ button {
     1025px — 1200px: Desktops, large screens.
     1201px and more — Extra large screens, TV.
 */
+/*
 @media screen and (max-width: 480px) {
     #info::after {
         content: 'MOBILE';
@@ -86,9 +87,29 @@ button {
         content: 'MONITOR';
     }
 }
-
+*/
 @media all and (display-mode: fullscreen) {
     body {
         background: red;
     }
+}
+
+/* Smartphones, touchscreens, tablets. */
+@media (hover: none) and (pointer: coarse) {
+    #info::after { content: 'touch'; }
+}
+
+/* Stylus-based screens */
+@media (hover: none) and (pointer: fine) {
+    #info::after { content: 'stylus'; }
+}
+
+/* Nintendo Wii controller, Microsoft Kinect */
+@media (hover: hover) and (pointer: coarse) {
+    #info::after { content: 'body'; }
+}
+
+/* Mouse, touch pad */
+@media (hover: hover) and (pointer: fine) {
+    #info::after { content: 'computer'; }
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html;charset=utf-8"/><title>Detect your physical screen size and resolution.</title><link type="text/css" href="style.css" rel="stylesheet"/><script type="text/javascript" src="detector.js"></script></head><body id="body"><div id="detect"></div><script>// CSS pixels already somewhat scaled and standardized.
+let pix_width = screen.width;
+let pix_height = screen.height;
+let dpr = window.devicePixelRatio;
+// Actual device pixels!
+let dpix_width = pix_width * dpr;
+let dpix_height = pix_height * dpr;
+let style = getComputedStyle(document.getElementById('detect'));
+// Use 1cm div to get css pix per cm.
+let pix_per_cm_horiz = style.width.substring(0, style.width.length-2); // Remove px at end.
+let pix_per_cm_vert  = style.height.substring(0, style.height.length-2); // Remove px at end.
+// Now calculate actual device pixels per cm.
+let screen_width_cm = Math.round(10*pix_width/pix_per_cm_horiz)/10;
+let screen_height_cm = Math.round(10*pix_height/pix_per_cm_vert)/10;
+let screen_width_inch = Math.round(10*screen_width_cm/2.54)/10;
+let screen_height_inch = Math.round(10*screen_height_cm/2.54)/10;
+let screen_diag_inch = Math.round(10*Math.sqrt(screen_width_inch*screen_width_inch+
+                                  screen_height_inch*screen_height_inch))/10;
+console.log('width css px = '+pix_width+' height css px = '+pix_height);
+console.log('width dev px = '+dpix_width+' height dev px = '+dpix_height);
+console.log('screen width cm = '+screen_width_cm+' screen height cm = '+screen_height_cm);
+let window_width_cm = Math.round(10*window.innerWidth/pix_per_cm_horiz)/10;
+let window_height_cm = Math.round(10*window.innerHeight/pix_per_cm_vert)/10;
+let window_top = window.screenTop;
+let window_left = window.screenLeft;
+console.log('window width cm = '+window_width_cm+' window height cm = '+window_height_cm);</script><div id="horizontal_arrow"></div><div id="vertical_arrow"></div><div id="sinfo"></div><div id="siinfo"></div><div id="winfo"></div><div id="screen_center">Screen Center</div><!-- Position block at middle of screen! Despite moving window around. --><script>let ha = document.getElementById('horizontal_arrow');
+ha.style.top = (window.innerHeight/2)+'px';
+let va = document.getElementById('vertical_arrow');
+va.style.left = (window.innerWidth/2)+'px';
+va.style.height = window.innerHeight+'px';
+let bo = document.getElementById('body');
+bo.style.height = window.innerHeight+'px';
+let si = document.getElementById('sinfo');
+si.innerHTML = 'Screen '+screen_width_cm+'×'+screen_height_cm+' cm    '+dpix_width+'×'+dpix_height+' real pixels   '+pix_width+'×'+pix_height+' css pixels';
+let wi = document.getElementById('winfo');
+wi.innerHTML = 'Window '+window_width_cm+'×'+window_height_cm+' cm    at  '+window_top+'×'+window_left+' px';
+let sii = document.getElementById('siinfo');
+sii.innerHTML = 'Screen '+screen_width_inch+'×'+screen_height_inch+' inch    diagonal '+screen_diag_inch+'"';
+let sc = document.getElementById('screen_center');
+sc.style.top = Math.round(screen.height/2-window_top-(window.outerHeight-window.innerHeight))+'px';
+sc.style.left = Math.round(screen.width/2-window_left-(window.outerWidth-window.innerWidth))+'px';</script></body></html>

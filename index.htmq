@@ -2,44 +2,16 @@ html {
     head {
         meta(http-equiv = content-type
              content    = 'text/html;charset=utf-8')
-        title = 'Detect your physical screen size and resolution.'
+        title = 'Detect mobile.'
+        meta(name=viewport content='width=device-width, initial-scale=1.0')
         link(type = text/css
              href = style.css
              rel  = stylesheet)
-        meta(name=viewport content='width=device-width, initial-scale=1.0')
         script(type = text/javascript
                src  = detect_screen_size.js)
     }
     body(id = body) {
-        div(id = detect)
-        script =
-        '''// Everything is in CSS pixels, already scaled to standard sizes depending on the device.
-           // The CSS pixels also scale with page magnification.
-           let screen_width = screen.width;
-           let screen_height = screen.height;
-           let dpr = window.devicePixelRatio;
-           let window_width = window.innerWidth;
-           let window_height = window.innerHeight;
-           let browser_top = window.screenTop;
-           let browser_left = window.screenLeft;'''
         div(id = info)
-        div(id = horizontal_arrow)
-        div(id = vertical_arrow)
-        div(id = screen_center) = 'Screen Center'// Position block at middle of screen! Despite moving window around.
-        script =
-        '''let ha = document.getElementById('horizontal_arrow');
-           ha.style.top = (window_height/2)+'px';
-           let va = document.getElementById('vertical_arrow');
-           va.style.left = (window_width/2)+'px';
-           va.style.height = window_height+'px';
-           let bo = document.getElementById('body');
-           bo.style.height = window_height+'px';
-           let sc = document.getElementById('screen_center');
-           sc.style.top = Math.round(screen_height/2)+'px';
-           let info = document.getElementById('info');
-           info.innerHTML = ''+window_width+'x'+window_height+'@'+browser_left+'x'+browser_top+' isMobile='+isMobile()+' ';
-           '''
         button(id=fullscreen onclick='toggleFullScreen();') = FULL
-
     }
 }

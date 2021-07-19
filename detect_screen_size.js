@@ -23,3 +23,19 @@ function guessDevice()
     let window_top = window.screenTop;
     let window_left = window.screenLeft;
 }
+
+function toggleFullScreen()
+{
+    let elem = document.querySelector("body");
+
+    if (!document.fullscreenElement)
+    {
+        elem.requestFullscreen().catch(err => {
+            alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        });
+    }
+    else
+    {
+        document.exitFullscreen();
+    }
+}

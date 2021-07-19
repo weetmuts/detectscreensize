@@ -11,7 +11,8 @@ body {
     height: 100px;
     margin: 0;
     padding: 0;
-    border: solid 1px red;
+    border: solid 4px red;
+    background: white;
 }
 
 #screen_center {
@@ -21,27 +22,17 @@ body {
     width: 1cm;
     height: 1cm;
     padding: 2px;
-    border-top: solid 1px #888888;
-    border-left: solid 1px #888888;
+    border-top: solid 1px red;
+    border-left: solid 1px red;
     color: #888888;
     font-size: 8px;
 }
 
-#sinfo {
+#info {
     margin-top: 50px;
-}
-
-#sinfo, #winfo, #siinfo {
     margin-left: 50px;
 }
 
-#detect {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 1cm;
-    height: 1cm;
-}
 
 #horizontal_arrow {
     position: fixed;
@@ -57,4 +48,47 @@ body {
     left: 0px;
     height: 100px;
     border-left: dashed 1px black;
+}
+
+button {
+    width: 10vw;
+    height: 10vw;
+    border: 3d 1px black;
+}
+
+/*
+    320px — 480px: Mobile devices.
+    481px — 768px: iPads, Tablets.
+    769px — 1024px: Small screens, laptops.
+    1025px — 1200px: Desktops, large screens.
+    1201px and more — Extra large screens, TV.
+*/
+@media screen and (max-width: 480px) {
+    #info::after {
+        content: 'MOBILE';
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    #info::after {
+        content: 'TABLET';
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    #info::after {
+        content: 'LAPTOP';
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    #info::after {
+        content: 'MONITOR';
+    }
+}
+
+@media all and (display-mode: fullscreen) {
+    body {
+        background: red;
+    }
 }
